@@ -3,6 +3,13 @@ import http from "http";
 const server = http.createServer((req, res) => {
   const url = req.url;
   const method = req.method;
+  const userdata = [
+    {
+        id: 1,
+        name: "cm",
+        email: "c.m@abes.ac.in",
+    }
+  ]
 
   res.statusCode = 201;
   res.setHeader("Content-Type", "text/plain");
@@ -11,7 +18,11 @@ const server = http.createServer((req, res) => {
   } 
   else if (url === "/sys" && method === "GET") {
     res.end("This is system information");
-  } 
+  }
+  else if(url == "/data" && method == "GET"){
+    res.statusCode=201;
+    res.end(JSON.stringify(userdata));
+  }
   else {
     res.end("Hellow Server");
   }
